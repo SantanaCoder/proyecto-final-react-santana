@@ -20,6 +20,15 @@
   padding: 10px;
 }
 
+.incart{
+  height: 150px;
+  width: 150px;
+  flex-wrap: wrap;
+  background-color: rgb(61, 102, 138);
+ border-radius: 20%;
+  padding: 10px;
+}
+
 .number{
   margin: 10px;
   background-color: aliceblue;
@@ -78,7 +87,7 @@ button{
     font-size: small;
 	justify-content: center;
   align-content: center;
-  background-color: rgb(84, 94, 98);
+  background-color: rgb(44, 90, 108);
   
 	
     

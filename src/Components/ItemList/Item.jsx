@@ -17,13 +17,6 @@ const Item = ({productos}) => {
         </Link>
       </div>
     </div>
-    
-
-
-  
-
-      
-
   )
 }
 

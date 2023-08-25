@@ -1,113 +1,37 @@
-import { useState, useEffect } from "react"
-import { idProductos } from "../products"
-import ItemDetail from "./ItemDetail"
-import { useParams } from "react-router-dom"
-
-
-const ItemDetailContainer = () => {
-
-
-  const [detalle, setDetalle] = useState(null)
- const {id} = useParams
-
-  useEffect(() => {
-    idProductos(id)
-      .then(res => {
-        setDetalle(res)
-          })
-      .catch (err => { console.log("err") })    
-
-  }, [id])
-
-
-
-  return (
-    <div>
-      <ItemDetail detalle= {detalle}/>
-    </div>
-  )
-}
-
-export default ItemDetailContainer
-
-
-
-
-/*
 import React, { useState, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 import ItemDetail from "./ItemDetail";
-import { traerProductoPorId } from "../pedidoDeProductos";
-import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () => {
-  const [detalle, setDetalle] = useState({});
-  const id = useParams().id;
+  const [detalle, setDetalle] = useState(null);
+  const hardcodedId = "17sf7JzNOkI7ySNBSUkJ"; 
 
   useEffect(() => {
-    async function obtenerProducto() {
+    const fetchProducto = async () => {
       try {
-        const producto = await traerProductoPorId (id);
-        setDetalle(producto);
-      } catch (error) {
-        console.error("Error al obtener el producto:", error);
-      }
-    }
+        const productRef = doc(db, "instrumentos", hardcodedId);
+        const productfire = await getDoc(productRef);
 
-    obtenerProducto();
-  }, [id]);
+        if (productfire.exists()) {
+          const productData = productfire.data();
+          setDetalle(productData);
+        } else {
+          console.log("Producto no encontrado");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchProducto();
+  }, []);
 
   return (
     <div>
-      {detalle && <ItemDetail detalle={detalle} />}
+      {detalle ? <ItemDetail {...detalle} /> : <p>Cargando...</p>}
     </div>
   );
-};
-
-export default ItemDetailContainer;*/
-
-
-
-
-/*///////////////////// original
-
-import { useState, useEffect } from "react"
-import ItemDetail from "./ItemDetail"
-import { doc, getDoc} from "firebase/firestore";
-import { db } from "../firebase/firebase";
-import { useParams } from "react-router-dom";
-
-
-
-const ItemDetailContainer = () => {
-  
-
-  const [detalle, setDetalle] = useState(null)
- 
-  const  id = useParams().id
-
-  useEffect(() => {     
-    
-   
-   
-    const docRef = doc(db,"instrumentos", id);
-    getDoc(docRef)
-    .then((resp) => {
-      setDetalle(
-        {...resp.data(), id: resp.id}
-      );
-    })
-    .catch((error) => {
-      console.error("Error al obtener el producto:", error);
-    });
-  }, [id])
-
- 
-
-  return (
-    <div>
-      {detalle && <ItemDetail detalle= {detalle}/>}
-    </div>
-  )
 }
 
-export default ItemDetailContainer*/
+export default ItemDetailContainer;

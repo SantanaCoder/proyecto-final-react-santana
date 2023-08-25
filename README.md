@@ -10,6 +10,8 @@ Este proyecto es un sitio web de comercio electrónico que se enfoca en la venta
 - [Tailwind CSS](https://tailwindcss.com/): Un marco de diseño de CSS altamente personalizable y de bajo nivel.
 - [Testing Library](https://testing-library.com/): Un conjunto de utilidades para realizar pruebas de componentes React.
 - [Web Vitals](https://web.dev/vitals/): Métricas esenciales que ayudan a medir la calidad de la experiencia del usuario en la web.
+- [uuid 9.0.0](https://www.npmjs.com/package/uuid): Biblioteca para generar identificadores únicos (UUID) en aplicaciones JavaScript. Los UUID son utilizados para asignar recursos de manera única en sistemas distribuidos.
+
 
 ## Instrucciones de Ejecución
 
@@ -17,6 +19,8 @@ Este proyecto es un sitio web de comercio electrónico que se enfoca en la venta
 2. Instala las dependencias: `npm install`
 3. Inicia el servidor de desarrollo: `npm start`
 4. Abre el navegador y visita [http://localhost:3000](http://localhost:3000)
+4. Video aqui[https://drive.google.com/file/d/1S3gkaPsPub8hHVMA9R3dsqD2R7u1k3oH/view?usp=sharing]
+
 
 ## Comentarios Adicionales
 
